@@ -1,0 +1,640 @@
+/* ==========================================================
+   Itabian Restro — Hyderabad's 1st Tikka Shawarma Destination
+   Plain CSS. Palette taken from the logo:
+   black #0a0a0a · gold #ffb11c · red #e5252a · cream #fff8ea
+   ========================================================== */
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------- Base ---------- */
+:root {
+  --black: #0a0a0a;
+  --ink: #141210;
+  --gold: #ffb11c;
+  --gold-soft: #ffd27a;
+  --red: #e5252a;
+  --cream: #fff8ea;
+  --font-display: "Barlow Condensed", sans-serif;
+  --font-script: "Lobster", cursive;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+}
+
+html {
+  font-family: var(--font-sans);
+  background-color: var(--black);
+  color: var(--cream);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--black);
+  color: #fff;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--black);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Page background ---------- */
+.page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  overflow-x: clip; /* the spinning ring's rotated box must not cause sideways scroll */
+  background-color: var(--black);
+  background-image:
+    radial-gradient(circle at 80% 30%, rgba(255, 177, 28, 0.2) 0%, rgba(229, 37, 42, 0.08) 42%, transparent 70%),
+    radial-gradient(circle at 12% 8%, rgba(229, 37, 42, 0.16) 0%, transparent 48%),
+    linear-gradient(165deg, #17110a 0%, #0d0b09 50%, #070707 100%);
+}
+
+.main {
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+/* ---------- Layout grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Brand lockup ---------- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand-logo {
+  width: 4rem;
+  height: 4rem;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 9999px;
+  border: 2px solid var(--gold);
+  background: var(--black);
+  box-shadow: 0 10px 20px -6px rgba(0, 0, 0, 0.7), 0 0 0 4px rgba(255, 177, 28, 0.15);
+}
+
+.brand-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.brand-name {
+  font-family: var(--font-script);
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--gold);
+}
+
+.brand-tagline {
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(255, 248, 234, 0.72);
+}
+
+/* ---------- Headline + copy ---------- */
+.headline {
+  margin-top: 1.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5.2vw, 4.25rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.96;
+  text-wrap: balance;
+  color: #fff;
+}
+
+.description {
+  max-width: 36rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(255, 248, 234, 0.8);
+}
+
+/* ---------- Link buttons ---------- */
+.actions {
+  position: relative;
+  max-width: 36rem;
+  margin-top: 2rem;
+}
+
+.links {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.link-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 68px;
+  padding: 0.875rem 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: var(--cream);
+  color: var(--black);
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.8);
+  transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.link-card:hover {
+  background: #fff;
+  border-color: var(--gold);
+  transform: translateY(-0.125rem);
+}
+
+.link-card:active {
+  transform: translateY(0);
+}
+
+.link-card:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--black),
+    0 0 0 4px var(--gold),
+    0 10px 30px -12px rgba(0, 0, 0, 0.8);
+}
+
+.link-main {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.link-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background: #f6e7c6;
+}
+
+.link-icon svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.link-text {
+  min-width: 0;
+}
+
+.link-label,
+.link-sub {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.link-label {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--black);
+}
+
+.link-sub {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #5c4a2a;
+}
+
+.link-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--red);
+  transition: color 0.15s ease;
+}
+
+.link-card:hover .link-hint {
+  color: #a3151a;
+}
+
+.hint-text {
+  display: none;
+}
+
+.arrow {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.15s ease;
+}
+
+.link-card:hover .arrow {
+  transform: translate(0.125rem, -0.125rem);
+}
+
+/* Call button: the primary action, filled gold */
+.link-call {
+  background: var(--gold);
+  border-color: var(--gold-soft);
+}
+
+.link-call:hover {
+  background: #ffc247;
+  border-color: #fff;
+}
+
+.link-call .link-icon {
+  background: rgba(10, 10, 10, 0.12);
+}
+
+.link-call .link-sub {
+  color: #3d2c06;
+}
+
+.link-call .link-hint,
+.link-call:hover .link-hint {
+  color: var(--black);
+}
+
+/* ---------- Hero logo ---------- */
+.hero-glow {
+  display: none;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 46%,
+    rgba(255, 177, 28, 0.3),
+    rgba(229, 37, 42, 0.1) 48%,
+    transparent 72%
+  );
+}
+
+.hero {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.hero-logo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  object-fit: cover;
+  box-shadow:
+    0 0 0 6px var(--black),
+    0 0 0 8px var(--gold),
+    0 30px 50px -12px rgba(0, 0, 0, 0.85);
+  user-select: none;
+}
+
+/* the one animated moment: a slow dashed ring around the logo */
+.hero-ring {
+  position: absolute;
+  top: -0.9rem;
+  left: -0.9rem;
+  right: -0.9rem;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  border: 2px dashed rgba(255, 177, 28, 0.55);
+  animation: ring-spin 40s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.chip {
+  padding: 0.4rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--cream);
+  border: 1px solid rgba(255, 177, 28, 0.45);
+  background: rgba(255, 177, 28, 0.08);
+}
+
+.chip-a {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+
+/* ---------- Image fallback (shown by js/main.js if an image fails) ---------- */
+.img-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  text-align: center;
+  color: rgba(255, 248, 234, 0.8);
+  background: linear-gradient(to bottom right, #231a0c, #0a0a0a);
+}
+
+.img-fallback svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--gold);
+}
+
+.img-fallback span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+
+/* ==========================================================
+   Responsive breakpoints
+   ========================================================== */
+
+/* sm — 640px+ */
+@media (min-width: 640px) {
+  .brand-logo {
+    width: 5rem;
+    height: 5rem;
+  }
+  .brand-name {
+    font-size: 2.5rem;
+  }
+  .brand-tagline {
+    font-size: 0.875rem;
+  }
+  .description {
+    font-size: 1.125rem;
+  }
+  .link-label {
+    font-size: 17px;
+  }
+  .link-sub {
+    font-size: 0.875rem;
+  }
+  .hint-text {
+    display: inline;
+  }
+  .hero {
+    max-width: 380px;
+  }
+}
+
+/* lg — 1024px+ */
+@media (min-width: 1024px) {
+  .main {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .left {
+    grid-column: span 7 / span 7;
+  }
+
+  .right {
+    grid-column: span 5 / span 5;
+  }
+
+  .hero-glow {
+    display: block;
+  }
+
+  .hero {
+    max-width: 420px;
+  }
+}
+
+/* ==========================================================
+   Menu viewer (pop-up)
+   ========================================================== */
+.menu-modal {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(100% - 1.5rem, 56rem);
+  height: min(92dvh, 70rem);
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 177, 28, 0.35);
+  border-radius: 1.25rem;
+  background: var(--black);
+  color: #fff;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.9);
+}
+
+.menu-modal[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-modal::backdrop {
+  background: rgba(5, 4, 3, 0.85);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.menu-modal-bar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0.75rem 0.75rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 177, 28, 0.25);
+  background: #17110a;
+}
+
+.menu-modal-title {
+  font-family: var(--font-script);
+  font-size: 1.75rem;
+  line-height: 1.1;
+  color: var(--gold);
+}
+
+.menu-close {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.menu-close:hover {
+  background: rgba(255, 177, 28, 0.3);
+}
+
+.menu-close:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.menu-close svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.menu-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.menu-modal-body img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.menu-error {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: rgba(255, 248, 234, 0.8);
+}
+
+html.menu-open {
+  overflow: hidden;
+}
+
+.menu-modal-hint {
+  display: none;
+  flex-shrink: 0;
+  padding: 0.4rem 1rem;
+  font-size: 0.75rem;
+  text-align: center;
+  color: rgba(255, 248, 234, 0.75);
+  background: #17110a;
+}
+
+/* Full-screen on phones */
+@media (max-width: 639px) {
+  .menu-modal {
+    width: 100%;
+    height: 100dvh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .menu-modal-hint {
+    display: block;
+  }
+
+  /* Wide menu pictures: show them larger so the text is readable,
+     and let the visitor swipe sideways / pinch to zoom */
+  .menu-modal-body {
+    overflow: auto;
+    touch-action: pan-x pan-y pinch-zoom;
+  }
+
+  .menu-modal-body img {
+    width: 1100px;
+    max-width: none;
+  }
+}
