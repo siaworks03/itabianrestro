@@ -216,12 +216,27 @@
     <dialog class="menu-modal" id="menu-modal" aria-label="Itabian Restro menu">
       <div class="menu-modal-bar">
         <span class="menu-modal-title">Menu</span>
+        <span class="menu-counter" id="menu-counter" aria-live="polite"></span>
         <button type="button" class="menu-close" aria-label="Close menu">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
         </button>
       </div>
-      <p class="menu-modal-hint">Swipe to move around · pinch to zoom</p>
-      <div class="menu-modal-body" id="menu-pages"></div>
+
+      <div class="menu-viewer">
+        <div class="menu-stage" id="menu-stage"></div>
+        <button type="button" class="menu-nav menu-prev" aria-label="Previous page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+        </button>
+        <button type="button" class="menu-nav menu-next" aria-label="Next page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+        </button>
+      </div>
+
+      <div class="menu-toolbar">
+        <button type="button" class="menu-tool" id="menu-zoom-out" aria-label="Zoom out">−</button>
+        <button type="button" class="menu-tool menu-tool-reset" id="menu-zoom-reset" aria-label="Fit to screen">Fit</button>
+        <button type="button" class="menu-tool" id="menu-zoom-in" aria-label="Zoom in">+</button>
+      </div>
     </dialog>
 
     <script src="js/main.js" defer></script>
