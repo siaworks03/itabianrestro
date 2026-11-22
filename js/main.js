@@ -56,7 +56,7 @@
   });
 
   /* ---------- 2) Menu pop-up ---------- */
-  var trigger = document.querySelector("[data-menu-images=]");
+  var trigger = document.querySelector("[data-menu-images]");
   var modal = document.getElementById("menu-modal");
   var pages = document.getElementById("menu-pages");
 
