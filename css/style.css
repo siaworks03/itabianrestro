@@ -540,7 +540,7 @@ body {
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 0.75rem;
   padding: 0.75rem 0.75rem 0.75rem 1.25rem;
   border-bottom: 1px solid rgba(255, 177, 28, 0.25);
   background: #17110a;
@@ -553,9 +553,18 @@ body {
   color: var(--gold);
 }
 
+.menu-counter {
+  margin-left: auto;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(255, 248, 234, 0.85);
+  font-variant-numeric: tabular-nums;
+}
+
 .menu-close {
   width: 2.5rem;
   height: 2.5rem;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -570,30 +579,124 @@ body {
   background: rgba(255, 177, 28, 0.3);
 }
 
-.menu-close:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 2px;
-}
-
 .menu-close svg {
   width: 1.25rem;
   height: 1.25rem;
 }
 
-.menu-modal-body {
+/* Viewer area: one page at a time, fitted to the screen */
+.menu-viewer {
+  position: relative;
   flex: 1;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
+  min-height: 0;
+  background: #000;
 }
 
-.menu-modal-body img {
+.menu-stage {
+  position: absolute;
+  inset: 0;
+  display: flex; /* child uses margin:auto so it centres when small and scrolls when zoomed */
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y; /* pinch is handled in js/main.js */
+}
+
+.menu-stage img {
   display: block;
-  width: 100%;
-  height: auto;
+  flex: none;
+  margin: auto;
+  max-width: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.menu-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 2.75rem;
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: rgba(10, 10, 10, 0.7);
+  border: 1px solid rgba(255, 177, 28, 0.6);
+  color: var(--gold);
+  cursor: pointer;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.menu-nav:hover:not(:disabled) {
+  background: var(--gold);
+  color: var(--black);
+}
+
+.menu-nav:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.menu-nav svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.menu-prev {
+  left: 0.5rem;
+}
+
+.menu-next {
+  right: 0.5rem;
+}
+
+.menu-toolbar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.6rem;
+  border-top: 1px solid rgba(255, 177, 28, 0.25);
+  background: #17110a;
+}
+
+.menu-tool {
+  min-width: 2.75rem;
+  height: 2.5rem;
+  padding: 0 0.9rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font: 700 1.25rem/1 var(--font-sans);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.menu-tool:hover:not(:disabled) {
+  background: rgba(255, 177, 28, 0.3);
+}
+
+.menu-tool:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.menu-tool-reset {
+  font-size: 0.875rem;
+}
+
+.menu-close:focus-visible,
+.menu-nav:focus-visible,
+.menu-tool:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
 }
 
 .menu-error {
+  margin: auto;
   padding: 3rem 1.5rem;
   text-align: center;
   color: rgba(255, 248, 234, 0.8);
@@ -601,16 +704,6 @@ body {
 
 html.menu-open {
   overflow: hidden;
-}
-
-.menu-modal-hint {
-  display: none;
-  flex-shrink: 0;
-  padding: 0.4rem 1rem;
-  font-size: 0.75rem;
-  text-align: center;
-  color: rgba(255, 248, 234, 0.75);
-  background: #17110a;
 }
 
 /* Full-screen on phones */
@@ -622,19 +715,8 @@ html.menu-open {
     border-radius: 0;
   }
 
-  .menu-modal-hint {
-    display: block;
-  }
-
-  /* Wide menu pictures: show them larger so the text is readable,
-     and let the visitor swipe sideways / pinch to zoom */
-  .menu-modal-body {
-    overflow: auto;
-    touch-action: pan-x pan-y pinch-zoom;
-  }
-
-  .menu-modal-body img {
-    width: 1100px;
-    max-width: none;
+  .menu-nav {
+    width: 2.5rem;
+    height: 2.5rem;
   }
 }
