@@ -56,7 +56,7 @@
   });
 
   /* ---------- 2) Menu pop-up ---------- */
-  var trigger = document.querySelector("[data-menu-images="assets/menu1.jpg,assets/menu2.jpg,assets/menu3.jpg,assets/menu4.jpg,assets/menu5.jpg,assets/menu6.jpg,assets/menu7.jpg"]");
+  var trigger = document.querySelector("[data-menu-images=]");
   var modal = document.getElementById("menu-modal");
   var pages = document.getElementById("menu-pages");
 
